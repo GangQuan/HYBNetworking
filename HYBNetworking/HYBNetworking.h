@@ -264,6 +264,7 @@ typedef void(^HYBResponseFail)(NSError *error);
  *	@return
  */
 + (HYBURLSessionTask *)uploadWithImage:(UIImage *)image
+                          imageMaxSize:(NSInteger)maxSize
                                    url:(NSString *)url
                               filename:(NSString *)filename
                                   name:(NSString *)name

@@ -552,6 +552,7 @@ static inline NSString *cachePath() {
 }
 
 + (HYBURLSessionTask *)uploadWithImage:(UIImage *)image
+                          imageMaxSize:(NSInteger)maxSize
                                    url:(NSString *)url
                               filename:(NSString *)filename
                                   name:(NSString *)name
