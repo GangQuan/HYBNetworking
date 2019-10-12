@@ -581,7 +581,14 @@ static inline NSString *cachePath() {
   
   AFHTTPSessionManager *manager = [self manager];
   HYBURLSessionTask *session = [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-    NSData *imageData = UIImageJPEGRepresentation(image, 1);
+      
+    CGFloat compression = 1.0f;
+    CGFloat maxCompression = 0.1f;
+    NSData *imageData = UIImageJPEGRepresentation(image, compression);
+    while ([imageData length] > maxSize && compression > maxCompression) {
+        compression -= 0.1;
+        imageData = UIImageJPEGRepresentation(image, compression);
+    }
     
     NSString *imageFileName = filename;
     if (filename == nil || ![filename isKindOfClass:[NSString class]] || filename.length == 0) {
